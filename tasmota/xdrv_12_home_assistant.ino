@@ -529,7 +529,7 @@ void HAssAnnounceRelayLight(void)
 
               char *effect_command_topic = stemp1;
               GetTopic_P(effect_command_topic, CMND, TasmotaGlobal.mqtt_topic, D_CMND_SCHEME);
-              if ((PinUsed(GPIO_WS2812)) or (PinUsed(GPIO_P9813_CLK) && PinUsed(GPIO_P9813_DAT))) {  // WS2812 or RGB led
+              if (TasmotaGlobal.light_type >= LT_RGB) { // WS2812 or RGB led
                 TryResponseAppend_P(HASS_DISCOVER_LIGHT_SCHEME_WS2812, effect_command_topic, state_topic);
               } else {
                 TryResponseAppend_P(HASS_DISCOVER_LIGHT_SCHEME, effect_command_topic, state_topic);
